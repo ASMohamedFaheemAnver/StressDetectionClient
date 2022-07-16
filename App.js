@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {useState} from 'react';
 import {
   SafeAreaView,
@@ -20,230 +21,228 @@ const App = () => {
     {
       question: 'I found myself getting upset by quite trivial things ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I was aware of dryness of my mouth ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: "I couldn't seem to experience any positive feeling at all ?",
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I experienced breathing difficulty (eg, excessively rapid breathing, breathlessness in the absence of physical exertion) ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: "I just couldn't seem to get going ?",
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I tended to over-react to situations ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I had a feeling of shakiness (eg, legs going to give way) ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I found it difficult to relax ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I found myself in situations that made me so anxious i was most relieved when they ended ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt that I had nothing to look forward to ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I found myself getting upset rather easily ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt that I was using a lot of nervous energy ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt sad and depressed ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I found myself getting impatient when I was delayed in any way (eg, elevators, traffic lights, being kept waiting) ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I had a feeling of faintness ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt that I had lost interest in just about everything ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: "I felt I wasn't worth much as a person ?",
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt that I was rather touchy ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I perspired noticeably (eg, hands sweaty) in the absence of high temperatures or physical exertion ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt scared without any good reason ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: "I felt that life wasn't worthwhile ?",
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
 
     {
       question: 'I found it hard to wind down ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I had difficulty in swallowing ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         "I couldn't seem to get any enjoyment out of the things I did ?",
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I was aware of the action of my heart in the absence of physical exertion (eg, sense of heart rate increase, heart missing a beat) ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt down-hearted and blue ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I found that I was very irritable ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt I was close to panic ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I found it hard to calm down after something upset me ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I feared that I would be "thrown" by some trivial but unfamiliar task ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I was unable to become enthusiastic about anything ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I found it difficult to tolerate interruptions to what I was doing ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I was in a state of nervous tension ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt I was pretty worthless ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I was intolerant of anything that kept me from getting on with what I was doing ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt terrified ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I could see nothing in the future to be hopeful about ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I felt that life was meaningless ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I found myself getting agitated ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question:
         'I was worried about situations in which I might panic and make a fool of myself ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I experienced trembling (eg, in the hands) ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
     {
       question: 'I found it difficult to work up the initiative to do things ?',
       options: ['0 - NEVER', '1 - SOMETIMES', '2 - OFTEN', '3 - ALMOST ALWAYS'],
-      selected: null,
+      selected: '0 - NEVER',
     },
   ]);
 
   const [isAgreed, setIsAgreed] = useState(false);
   const disabled = questionsMap.some(question => !question.selected);
-
-  console.log({disabled});
 
   return (
     <PaperProvider>
@@ -308,13 +307,23 @@ const App = () => {
               );
             })}
             <TouchableOpacity
-              onPress={() => {
+              onPress={async () => {
                 const payload = questionsMap.map((question, i) => {
                   return {[`Q${i + 1}A`]: mapQuestionValue[question.selected]};
                 });
                 console.log({payload});
+
+                try {
+                  const response = await axios.post(
+                    'http://192.168.1.100:3000/get-score',
+                    payload,
+                  );
+                  console.log({response});
+                } catch (e) {
+                  console.log({e});
+                }
               }}
-              disabled={disabled}
+              // disabled={disabled}
               style={{
                 justifyContent: 'center',
                 alignItems: 'center',
