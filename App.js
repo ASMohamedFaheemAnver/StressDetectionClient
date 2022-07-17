@@ -7,7 +7,11 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import {Provider as PaperProvider, RadioButton} from 'react-native-paper';
+import {
+  ActivityIndicator,
+  Provider as PaperProvider,
+  RadioButton,
+} from 'react-native-paper';
 
 const App = () => {
   const mapQuestionValue = {
@@ -16,6 +20,9 @@ const App = () => {
     '2 - OFTEN': 2,
     '3 - ALMOST ALWAYS': 3,
   };
+
+  const [loading, setIsLoading] = useState(false);
+  const [response, setResponse] = useState({});
 
   const [questionsMap, setQuestionMap] = useState([
     {
@@ -244,6 +251,18 @@ const App = () => {
   const [isAgreed, setIsAgreed] = useState(false);
   const disabled = questionsMap.some(question => !question.selected);
 
+  if (loading)
+    return (
+      <View
+        style={{
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
+        <ActivityIndicator size={'large'} />
+      </View>
+    );
+
   return (
     <PaperProvider>
       <SafeAreaView style={{justifyContent: 'center', padding: 16}}>
@@ -275,6 +294,58 @@ const App = () => {
               <Text style={{color: 'white', fontWeight: '800'}}>Agree</Text>
             </TouchableOpacity>
           </View>
+        ) : response?.Anxiety ? (
+          <ScrollView
+            contentContainerStyle={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              minHeight: '100%',
+            }}>
+            <Text
+              style={{
+                padding: 10,
+                fontSize: 18,
+                fontWeight: '800',
+                color: 'teal',
+              }}>
+              YOUR MENTAL HEALTH STATUS
+            </Text>
+            {Object.keys(response)?.map((key, i) => (
+              <View
+                key={i}
+                style={{
+                  width: '100%',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                }}>
+                <Text
+                  style={{
+                    padding: 10,
+                    flex: 1,
+                    fontSize: 18,
+                    fontWeight: '800',
+                  }}>
+                  {key}
+                </Text>
+                <Text
+                  style={{
+                    padding: 10,
+                    fontSize: 18,
+                    fontWeight: '800',
+                  }}>
+                  :
+                </Text>
+                <Text
+                  style={{
+                    padding: 10,
+                    flex: 2,
+                    fontSize: 18,
+                  }}>
+                  {response[key]}
+                </Text>
+              </View>
+            ))}
+          </ScrollView>
         ) : (
           <ScrollView>
             {questionsMap.map((questionData, i) => {
@@ -312,14 +383,16 @@ const App = () => {
                   return {[`Q${i + 1}A`]: mapQuestionValue[question.selected]};
                 });
                 console.log({payload});
-
                 try {
+                  setIsLoading(true);
                   const response = await axios.post(
                     'http://192.168.1.100:3000/get-score',
                     payload,
                   );
-                  console.log({response});
+                  setIsLoading(false);
+                  setResponse(response.data);
                 } catch (e) {
+                  setIsLoading(false);
                   console.log({e});
                 }
               }}
